@@ -15,19 +15,24 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @GetMapping("/Movie")
+    @GetMapping("/movies")
     public List<Movie> findAll() {
         return movieMapper.findAll();
     }
 
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movies/{id}")
     public Movie findById(@PathVariable Integer id) {
         return movieMapper.findById(id);
     }
 
-    @GetMapping("/movie")
-    public List<Movie> findByTitles(@RequestParam(name = "startsWith") String startsWith) {
+    @GetMapping("/movies/title")
+    public List<Movie> findByTitles(@RequestParam String startsWith) {
         return movieMapper.findByMovieStartsWith(startsWith);
+    }
+
+    @GetMapping("/movies/year")
+    public List<Movie> findByYear(@RequestParam Integer startYear, @RequestParam Integer endYear) {
+        return movieMapper.findByYear(startYear, endYear);
     }
 }
 

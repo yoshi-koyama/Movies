@@ -1,11 +1,11 @@
 package com.movie.movie;
 
 public class Movie {
-    private int id;
+    private Integer id;
     private String title;
-    private int release_year;
+    private Integer release_year;
 
-    public Movie(int id, String title, int release_year) {
+    public Movie(Integer id, String title, Integer release_year) {
         this.id = id;
         this.title = title;
         this.release_year = release_year;
@@ -13,11 +13,11 @@ public class Movie {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -33,7 +33,7 @@ public class Movie {
         return release_year;
     }
 
-    public void setRelease_year(int release_year) {
+    public void setRelease_year(Integer release_year) {
         this.release_year = release_year;
     }
 }
