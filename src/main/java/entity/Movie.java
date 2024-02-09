@@ -1,4 +1,4 @@
-package com.movie.movie;
+package entity;
 
 public class Movie {
     private Integer id;

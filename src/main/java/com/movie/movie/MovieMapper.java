@@ -1,10 +1,12 @@
 package com.movie.movie;
 
+import entity.Movie;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface MovieMapper {
@@ -12,12 +14,12 @@ public interface MovieMapper {
     List<Movie> findAll();
 
     @Select("SELECT * FROM movies WHERE id = #{id}")
-    Movie findById(@RequestParam Integer id);
+    Optional<Movie> findById(Integer id);
 
     @Select("SELECT * FROM movies WHERE title LIKE CONCAT(#{prefix}, '%')")
-    List<Movie> findByMovieStartsWith(String prefix);
+    Optional<Movie> findByMovieStartsWith(String prefix);
 
     @Select("SELECT * FROM movies WHERE release_year BETWEEN #{startYear} AND #{endYear}")
-    List<Movie> findByYear(@RequestParam Integer startYear, Integer endYear);
+    Optional<Movie> findByYear(@RequestParam Integer startYear, Integer endYear);
 }
 
