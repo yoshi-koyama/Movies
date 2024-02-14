@@ -1,6 +1,6 @@
 package com.movie.movie;
 
-import entity.Movie;
+import com.movie.movie.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

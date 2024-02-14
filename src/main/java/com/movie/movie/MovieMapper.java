@@ -1,6 +1,5 @@
 package com.movie.movie;
 
-import entity.Movie;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
