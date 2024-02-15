@@ -1,37 +1,26 @@
 package com.movie.movie;
 
+import com.movie.movie.Movie;
+import com.movie.movie.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class MovieController {
-    private final MovieMapper movieMapper;
+    private final MovieService movieService;
 
-    public MovieController(MovieMapper movieMapper) {
-        this.movieMapper = movieMapper;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
-    @GetMapping("/Movie")
-    public List<Movie> findAll() {
-        return movieMapper.findAll();
+    @GetMapping("/movies")
+    public Iterable<Movie> getMovies() {
+        return movieService.findAll();
     }
 
-    @GetMapping("/movie/{id}")
-    public Movie findById(@PathVariable Integer id) {
-        return movieMapper.findById(id);
-    }
-
-    @GetMapping("/movie")
-    public List<Movie> findByTitles(@RequestParam(name = "startsWith") String startsWith) {
-        return movieMapper.findByMovieStartsWith(startsWith);
+    @GetMapping("/movies/{id}")
+    public Movie getMovie(@PathVariable("id") Integer id) {
+        return movieService.findMovie(id);
     }
 }
-
-
-
-
-
