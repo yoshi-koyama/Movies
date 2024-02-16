@@ -3,7 +3,6 @@ package com.movie.movie.controller;
 import com.movie.movie.entity.Movie;
 import com.movie.movie.service.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,22 +17,19 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public Iterable<Movie> getMovies() {
-        return movieService.findAll();
-    }
-
-    @GetMapping("/movies/{id}")
-    public Movie getMovie(@PathVariable("id") Integer id) {
-        return movieService.findMovie(id);
-    }
-
-    @GetMapping("/movies/title")
-    public List<Movie> getMovieStartsWith(@RequestParam String startsWith) {
-        return movieService.findMovieStartsWith(startsWith);
-    }
-//
-    @GetMapping("/movies/year")
-    public List<Movie> getMovieYear(@RequestParam Integer startYear, Integer endYear) {
-        return movieService.findMovieYear(startYear, endYear);
+    public List<Movie> getMovies(@RequestParam(required = false) Integer id,
+                                 @RequestParam(required = false) String titleStartsWith,
+                                 @RequestParam(required = false) Integer fromYear,
+                                 @RequestParam(required = false) Integer toYear) {
+        if (id != null) {
+            return List.of(movieService.findMovieById(id));
+        } else if (titleStartsWith != null) {
+            return movieService.findMoviesByTitleStartsWith(titleStartsWith);
+        } else if (fromYear != null && toYear != null) {
+            return movieService.findMoviesByYearRange(fromYear, toYear);
+        } else {
+            return movieService.findAll();
+        }
     }
 }
+

@@ -15,10 +15,10 @@ public interface MovieMapper {
     @Select("SELECT * FROM movies WHERE id = #{id}")
     Optional<Movie> findById(Integer id);
 
-    @Select("SELECT * FROM movies WHERE title LIKE CONCAT(#{startsWith}, '%')")
-    List<Movie> findByMovieStartsWith(String startsWith);
+    @Select("SELECT * FROM movies WHERE title LIKE CONCAT(#{titleStartsWith}, '%')")
+    List<Movie> findMoviesByTitleStartsWith(String titleStartsWith);
 
-    @Select("SELECT * FROM movies WHERE release_year BETWEEN #{startYear} AND #{endYear}")
-    List<Movie> findByYear(Integer startYear, Integer endYear);
+    @Select("SELECT * FROM movies WHERE release_year BETWEEN #{fromYear} AND #{toYear}")
+    List<Movie> findMoviesByYearRange(Integer fromYear, Integer toYear);
 }
 

@@ -1,6 +1,6 @@
 package com.movie.movie.controller;
 
-import com.movie.movie.exception.InvalidYearException;
+import com.movie.movie.exception.InvalidYearRangeException;
 import com.movie.movie.exception.MovieNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -28,9 +28,9 @@ public class MovieControllerAdvice {
     }
 
     //年数が不正な場合の例外処理
-    @ExceptionHandler(value = InvalidYearException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidYearException(
-            InvalidYearException e, HttpServletRequest request) {
+    @ExceptionHandler(value = InvalidYearRangeException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidYearRangeException(
+            InvalidYearRangeException e, HttpServletRequest request) {
         Map<String, String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
