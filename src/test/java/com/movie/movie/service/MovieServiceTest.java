@@ -37,7 +37,7 @@ class MovieServiceTest {
         // Assertions
         assertThat(result).isNotNull();
         assertThat(result.size()).isEqualTo(1);
-        assertThat(result.get(0)).isEqualTo(new Movie(1, "Sample Movie", 1994));
+        assertThat(result.get(0)).isEqualTo(new Movie(2, "Sample Movie", 1994));
     }
 
 }
